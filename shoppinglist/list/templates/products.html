@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="center-column">
+    <h2><u>Products</u></h2>
+    {% for i in items %}
+    <div class="product">
+        {{ i }}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

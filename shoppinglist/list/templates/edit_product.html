@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="center-column">
+    <h2><u>My Shopping List</u></h2>
+    <br>
+    <form id="product-form" method='POST' action="#">
+        {% csrf_token %}
+        {{ form.name }} {{ form.quantity }} {{ form.unit }} <span id="edit-done">Mark done:</span> {{ form.completed }}
+        <input class="btn btn-warning btn-block" type='submit' value='Save'>
+    </form>
+</div>
+
+{% endblock %}

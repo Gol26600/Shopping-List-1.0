@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="center-column">
+    <h2><u>Notes</u></h2>
+    <div class="product">
+        <form id="notes-form" method='POST' action="#">
+        {% csrf_token %}
+        {{ form.notes }}
+        <input class="btn btn-warning btn-block" type='submit' value='Save'>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

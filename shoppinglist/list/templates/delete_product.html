@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="center-column">
+    <h4>Are you sure you want to delete "{{ item }}"?</h4>
+    <br>
+    <a class="btn btn-secondary btn-block" href="/">Nope, go back.</a>
+    <p></p>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <input class="btn btn-dark btn-block" type='submit' value='Delete'>
+    </form>
+</div>
+
+{% endblock %}

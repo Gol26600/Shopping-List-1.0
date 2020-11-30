@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="center-column">
+    <h2><u>My Shopping List</u></h2>
+    <br>
+    <form id="product-form" method='POST' action="#">
+        {% csrf_token %}
+        {{ form.name }} {{ form.quantity }} {{ form.unit }}
+        <input class="btn btn-warning btn-block" type='submit' value='Save'>
+    </form>
+    {% for i in items %}
+    <div class="product">
+        <span class="product-details">
+            {% if i.completed == True %}
+                <span class="product-name"><strike>{{ i.name }}</strike></span>
+                {% if i.quantity > 0 and i.unit != None %}
+                <span class="quantity"><strike>( {{ i.quantity }} {{ i.unit }} )</strike></span>
+                {% elif i.quantity > 0 %}
+                <span class="quantity"><strike>( {{ i.quantity }} )</strike></span>
+                {% endif %}
+            {% else %}
+                <span class="product-name">{{ i.name }}</span>
+                {% if i.quantity > 0 and i.unit != None %}
+                <span class="quantity">( {{ i.quantity }} {{ i.unit }} )</span>
+                {% elif i.quantity > 0 %}
+                <span class="quantity">( {{ i.quantity }} )</span>
+                {% endif %}
+            {% endif %}
+        </span>
+        <span class="product-buttons">
+            <a class="btn btn-secondary btn-sm" href="{% url 'edit_product' i.pk %}">Edit</a>
+            <a class="btn btn-dark btn-sm" href="{% url 'delete_product' i.pk %}">Delete</a>
+        </span>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
